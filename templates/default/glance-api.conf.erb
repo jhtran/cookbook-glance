@@ -20,7 +20,8 @@ bind_port = <%= @api_bind_port %>
 
 # Log to this file. Make sure you do not set the same log
 # file for both the API and registry servers!
-log_file = /var/log/glance/api.log
+# log_file = /var/log/glance/api.log
+log_config = /etc/glance/glance-api-logging.conf
 
 # Backlog requests when creating socket
 backlog = 4096
@@ -44,10 +45,10 @@ sql_connection = <%= @sql_connection %>
 
 # Send logs to syslog (/dev/log) instead of to file specified
 # by `log_file`
-use_syslog = <%= node["glance"]["syslog"]["use"] %>
+# use_syslog = <%= node["glance"]["syslog"]["use"] %>
 
 # Facility to use. If unset defaults to LOG_LOCAL2.
-syslog_log_facility = <%= node["glance"]["syslog"]["facility"] %>
+# syslog_log_facility = <%= node["glance"]["syslog"]["facility"] %>
 
 # ================= SSL Options ===============================
 

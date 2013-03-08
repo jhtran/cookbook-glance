@@ -160,6 +160,18 @@ template "/etc/glance/glance-api.conf" do
   notifies :restart, "service[glance-api]", :immediately
 end
 
+for glance_service in ['glance-api', 'glance-registry', 'glance-cache']:
+  template "/etc/glance/glance-#{glance_service}-logger.conf" do
+    source "glance-logger.conf.erb"
+    owner node["glance"]["user"]
+    group node["glance"]["group"]
+    mode   00644
+    variables(
+      :glance_service => glance_service,
+    )
+  end
+end
+
 template "/etc/glance/glance-api-paste.ini" do
   source "glance-api-paste.ini.erb"
   owner node["glance"]["user"]
